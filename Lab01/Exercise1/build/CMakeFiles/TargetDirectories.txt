@@ -1,0 +1,3 @@
+G:/public-B/teaching/sdp/lucidi/2024025/u04-cppBasics/u03s01e/build/CMakeFiles/my_program.dir
+G:/public-B/teaching/sdp/lucidi/2024025/u04-cppBasics/u03s01e/build/CMakeFiles/ALL_BUILD.dir
+G:/public-B/teaching/sdp/lucidi/2024025/u04-cppBasics/u03s01e/build/CMakeFiles/ZERO_CHECK.dir

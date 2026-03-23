@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="G:\public-B\teaching\sdp\lucidi\2024025\u04-cppBasics\u03s01e\HelloWorld.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="G:\public-B\teaching\sdp\lucidi\2024025\u04-cppBasics\u03s01e\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{5B6476DB-D962-364F-AC80-8578853E8952}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

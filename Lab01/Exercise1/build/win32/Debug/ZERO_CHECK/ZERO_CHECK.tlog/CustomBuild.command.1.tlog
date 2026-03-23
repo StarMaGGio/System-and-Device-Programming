@@ -1,0 +1,10 @@
+^G:\PUBLIC-B\TEACHING\SDP\LUCIDI\2024025\U04-CPPBASICS\U03S01E\BUILD\CMAKEFILES\AF9ABC45C504BE101383D9ACA12B0E30\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SG:/public-B/teaching/sdp/lucidi/2024025/u04-cppBasics/u03s01e -BG:/public-B/teaching/sdp/lucidi/2024025/u04-cppBasics/u03s01e/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file G:/public-B/teaching/sdp/lucidi/2024025/u04-cppBasics/u03s01e/build/MyProject.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
