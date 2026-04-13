@@ -1,0 +1,250 @@
+System and Device Programming
+Laboratory number 03 (System and Programming part)
+
+
+
+Learning goals
+--------------
+
+Review laboratory:
+1. C++ libraries, i.e., IO, containers, templates.
+2. Lambda Expressions, RAII and Smart Pointers, AND Copy control.
+
+ 
+
+Exercise 01
+C++ Sequential containers and templates
+---------------------------------------
+
+Adjust the stack and the queue programs written during laboratory number 2 to:
+- Use templates
+- Use both libraries together in the same programs.
+Is it possible to insert different data types in both containers from the same client program?
+
+
+
+Exercise 02
+Lambda Expressions
+------------------
+
+Suppose you run the following program. State what the output is.
+
+#include <functional>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+using std::cout;
+using std::endl;
+
+auto l1 (int& x) {
+  return [&] { std::cout << x << '\n'; };
+}
+
+int main() {
+  {
+    std::string str = "opeNai";
+
+    std::sort(str.begin(), str.end(), [](char a, char b) {
+        return std::tolower(a) < std::tolower(b);
+    });
+
+    std::cout << "L1: " << str << std::endl;
+  }
+
+  {
+    int arr[] = {5, 2, 8, 1, 9, 3};
+
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    std::sort(arr, arr + size, [](int a, int b) {
+        return a > b;
+    });
+
+    std::cout << "L2: ";
+    for (int i = 0; i < size; ++i) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+  }
+
+  {
+    int i = 3;
+    auto f = l1(i);
+    i = 5;
+    cout << "L3: ";
+    f();
+  }
+
+  {
+    std::vector<int> c{1, 2, 3, 4, 5, 6, 7};
+    int x = 5;
+    c.erase(std::remove_if(c.begin(), c.end(), [x](int n) { return n < x; }), c.end());
+ 
+    std::cout << "L4: ";
+    std::for_each(c.begin(), c.end(), [](int i) { std::cout << i << ' '; });
+    std::cout << '\n';
+  }
+
+  {
+    // Lambda with recursion
+    const int val = 10;
+    
+    auto l_fib = [](int n)
+    {
+        std::function<int(int, int, int)> fib = [&](int n, int a, int b)
+        {
+            return n ? fib(n - 1, a + b, a) : b;
+        };
+        return fib(n, 0, 1);
+    };
+
+    cout << "L5: ";
+    for (int i{1}; i <= val; ++i)
+        std::cout << l_fib(i) << (i < val ? ", " : "\n");
+  }
+  
+  return 0;
+}
+
+
+
+Exercise 03
+RAII and Smart Pointers
+-----------------------
+
+Reply to the following questions:
+01. What is dynamic memory allocation in C++?
+02. Explain the difference between stack memory and heap memory.
+03. What is the new operator in C++, and how does it relate to dynamic
+    memory allocation?
+04. What is the purpose of the delete operator in C++?
+05. What are memory leaks, and how can dynamic memory allocation
+    contribute to them?
+06. What are smart pointers in C++, and why are they used?
+07. Describe the differences between std::unique_ptr, std::shared_ptr,
+    and std::weak_ptr.
+08. How do smart pointers help prevent memory leaks and other
+    memory-related issues?
+09. What is the role of the destructor in smart pointers?
+10. Explain the concept of ownership semantics in the context of smart
+    pointers.
+11. Discuss the potential pitfalls of using raw pointers in C++ and
+    how smart pointers address these issues.
+12. Discuss the potential overhead associated with using smart
+    pointers compared to raw pointers and strategies for minimizing it.
+
+
+
+Exercise 04
+Copy control
+------------
+
+Suppose you run the following program.
+Which ones, when, and how many of the following copy control functions
+- constructor
+- copy constructor
+- copy assignment operator
+- move constructor
+- move assignment operator
+- destructor
+are called?
+
+#include <functional>
+#include <iostream>
+#include <vector>
+
+using std::cout;
+using std::endl;
+
+class C {
+private:
+    int i;
+public:
+    C () {
+        cout << "[C]";
+    }
+    ~C() {
+        cout << "[D]";
+    }
+    C (const C &n) {
+        cout << "[CC]";
+    }
+    C &operator=(const C &n) {
+        cout << "[CAO]";
+        return *this;
+    }
+    C (C&& n) noexcept {
+        cout << "[MC]";
+    }
+    C &operator=(C&&n) noexcept {
+        cout << "[MAO]";
+        return *this;
+    }
+    void set(int n)  {
+        i = n;
+    };
+    int get () {
+        return i;
+    }
+};
+
+void swap (C &e1, C &e2) {
+  C tmp;
+  tmp=e1;
+  e1=e2;
+  e2=tmp;
+  return;
+}
+
+int main() {
+  cout << endl << "{01}"; C e1;
+  cout << endl << "{02}"; C e2[5];
+  cout << endl << "{03}"; C e3 = *new (std::nothrow) C;
+  cout << endl << "{04}"; C *e4 = new C;
+  cout << endl << "{05}"; C *e5 = new C[10];  
+  
+  cout << endl << "{06}"; C v1 = e1;
+  cout << endl << "{07}"; C v2 = (std::move(e1));
+  cout << endl << "{08}"; C v3;
+  cout << endl << "{09}"; v3 = (std::move(e1));
+
+  cout << endl << "{10}"; swap (e1, v3);
+
+  cout << endl << "{11}"; return 0;
+}
+
+
+
+Exercise 5
+----------
+
+A social network (i.e., an undirected graph) is stored in a file with the following format.
+Each line of the file indicates a friendship relationship (i.e., an edge of the graph) as
+
+sX_nX sY_nY
+
+This line indicates that the individual sX_nX (surname X name X) is a friend of sY_nY
+(surname Y name Y) and vice versa.
+
+Write a C++ program that:
+
+- Reads the social network from the file and stores it in a proper data structure
+  (i.e., an adjacency list).
+
+- Displays the list of all enrolled individuals in the social network in lexicographical
+  order.
+
+- Give an individual's name, display all friends in lexicographic order.
+
+- Given two individuals, X and Y, display whether they are related in the social network,
+  i.e., print a list of individual leading from X to Y.
+  For example, if A has B as a friend, B has C as a friend, and C has D as a friend,
+  A ansd D are related in the social network.
+
+Suggestions
+-----------
+Implement the adjacency list using a map (of graph vertices) of sets (of adjacency nodes).
+Use a standard visit (DFS, Depth-First Search, or a BFS, Breadt-First Search) to discover
+relationships between two individuals.
+
