@@ -1,3 +1,5 @@
 {
-    "C_Cpp.errorSquiggles": "disabled"
+    "C_Cpp.errorSquiggles": "disabled",
+    "cmake.sourceDirectory": "C:/Users/matti/Documents/PoliTO/System and Device Programming/System and Programming/Lab01/Exercise1",
+    "C_Cpp.default.compilerPath": ""
 }
