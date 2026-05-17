@@ -68,8 +68,8 @@ has done its job.
 Observation
 -----------
 
-Is Version B faster than Version A?
-How much faster is it?
+Is Version B faster than Version A? Yes
+How much faster is it? 2x faster
 To discover that, generate some large files (millions of values) and
 run the program computing the elapsed times used by the process.
 Use the library "time.h" and the system call "clock" to evaluate the time
