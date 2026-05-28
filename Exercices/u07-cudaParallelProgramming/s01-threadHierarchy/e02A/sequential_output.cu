@@ -4,6 +4,7 @@
 
 /**
  * Kernel Function executed by the GPU
+ * Sequential: Execute the loop in the kernel function
  */
 __global__ void myf() {
     for (int i = 0; i < N; i++) {
