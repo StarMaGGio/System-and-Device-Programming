@@ -3,18 +3,22 @@
         {
             "name": "WSL",
             "includePath": [
-                "c:/Users/matti/Documents/PoliTO/System and Device Programming/System and Programming/**"
+                "${workspaceFolder}/**"
             ],
-            "compilerPath": "",
+            "compilerPath": "C:/msys64/ucrt64/bin/g++.exe",
             "cStandard": "c17",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "linux-gcc-x64",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "windows-gcc-x64",
             "compilerPathInCppPropertiesJson": "/usr/bin/g++",
             "mergeConfigurations": false,
             "recursiveIncludes": {},
             "browse": {
                 "limitSymbolsToIncludedHeaders": true
-            }
+            },
+            "compilerArgs": [
+                "-pthread",
+                "-std=c++17"
+            ]
         }
     ],
     "version": 4
