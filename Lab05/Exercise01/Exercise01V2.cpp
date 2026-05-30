@@ -64,7 +64,7 @@ int main(int argc, char const *argv[])
         inputVec[i] = static_cast<double>(i);
     }
 
-    cout << "Processing " << inputVec.size() << " elements sequentially..." << endl;
+    cout << "Processing " << inputVec.size() << " elements in parallel..." << endl;
     auto start = chrono::high_resolution_clock::now();
 
     // --- Example Function A: x^2 + 2x + 1 ---
