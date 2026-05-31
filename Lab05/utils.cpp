@@ -7,10 +7,10 @@ using namespace std;
 /**
  * Utility function to generate a random array
  */
-void initArray(float *array, int n) {
+void initArray(float *array, int n, float min = 0.0f, float max = 1.0f) {
     random_device rd;
     mt19937 gen(rd());
-    uniform_real_distribution<float> dis(0.0f, 1.0f);
+    uniform_real_distribution<float> dis(min, max);
 
     for (int i = 0; i < n; i++) {
         array[i] = dis(gen);
